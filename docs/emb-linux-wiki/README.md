@@ -1,11 +1,10 @@
-# 介紹
+# 嵌入式 Linux 知识库 (eLinux.org)
 
 > 本书-来源：[Embedded Linux Wiki](http://elinux.org) (by [CE Linux Forum](http://www.celinuxforum.org))
 > 翻译/校订：[eLinux.org 中文翻译组](http://www.tinylab.org/elinux) (by [泰晓科技](http://tinylab.org))
 > 报名/参与：*Star/fork* [eLinux github 仓库](https://github.com/tinyclub/elinux); *关注/私信* [@泰晓科技](http://weibo.com/tinylaborg); *详情请看* [翻译计划](http://www.tinylab.org/elinux)
 > 开源-书籍：更多开源书籍
 
-# 嵌入式 Linux 知识库 (eLinux.org)
 
 [Embedded Linux Wiki](http://elinux.org) 采用 MediaWiki 系统，由 [CE Linux Forum](http://www.celinuxforum.org/) 创建。
 

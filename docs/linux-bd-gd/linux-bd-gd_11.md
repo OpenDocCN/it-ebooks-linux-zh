@@ -1,14 +1,8 @@
 # 8\. 使 LFS 系统能够启动
 
-# 8\. 使 LFS 系统能够启动
-
-# 8.1\. 简介
-
 # 8.1\. 简介
 
 此时可以让 LFS 启动了，本章节讨论创建 `fstab` 文件, 为新的 LFS 系统编译一个内核，并安装 Grub 引导程序，在启动菜单上选择 LFS 系统后能启动系统。
-
-# 8.2\. 创建 /etc/fstab 文件
 
 # 8.2\. 创建 /etc/fstab 文件
 
@@ -61,8 +55,6 @@ FAT: utf8 is not a recommended IO charset for FAT filesystems,
 这个否定的建议应该可以被忽略，因为所有的其他"iocharset" 值选项造成 UTF-8 locales 文件名的错误显示。
 
 它也可能是在内核构造的时候为一些文件系统指定默认的 codepage 和 iocharset。相关的参数是指定的 "默认 NLS 选项" (CONFIG_NLS_DEFAULT)，"默认远程 NLS 选项" (CONFIG_SMB_NLS_DEFAULT)，"默认的 FAT 的 codepage " (CONFIG_FAT_DEFAULT_CODEPAGE)，和 "默认 FAT 的 iocharset" (CONFIG_FAT_DEFAULT_IOCHARSET)。在这里不叙述在内核编译时为 ntfs 文件的系统设置。
-
-# 8.3\. Linux-2.6.16.27
 
 # 8.3\. Linux-2.6.16.27
 
@@ -162,8 +154,6 @@ cp -r Documentation/* /usr/share/doc/linux-2.6.16.27
 | `config-2.6.16.27` | 包含所有内核配置选择后的项 |
 | `lfskernel-2.6.16.27` | Linux 系统的引擎。当启动计算机时，内核是操作系统装载的第一个部分，它检测并初始化所有的电脑硬件的组件，然后将这些设备以文件树的形式存放使得其它软件可以访问，并且能让单个 CPU 成为多任务处理机器能力，可以同时运行许多程序。 |
 | `System.map-2.6.16.27` | 显示地址和符号的文件；它映射内核里所有函数和数据结构的入口和地址。 |
-
-# 8.4\. 使 LFS 系统能够启动
 
 # 8.4\. 使 LFS 系统能够启动
 

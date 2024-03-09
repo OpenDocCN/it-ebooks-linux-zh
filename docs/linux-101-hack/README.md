@@ -1,5 +1,3 @@
-# 简介
-
 ### Linux 101 Hacks
 
 #### Copyright & Disclaimer

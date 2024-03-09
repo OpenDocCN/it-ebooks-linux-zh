@@ -1,7 +1,5 @@
 # 长索引
 
-# 长索引
-
 ## 软件包
 
 *   `Autoconf:` Autoconf-2.59

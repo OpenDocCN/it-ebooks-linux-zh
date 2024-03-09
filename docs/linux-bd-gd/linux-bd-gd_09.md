@@ -1,9 +1,5 @@
 # 第六章 安装系统基础软件
 
-# 第六章 安装系统基础软件
-
-# 6.1\. 简介
-
 # 6.1\. 简介
 
 在这一章，我们进入"建筑工地"，开始精心构建 LFS 系统。也就是指我们通过 chroot 命令进入一个临时的微型 Linux 系统，并作一些最后的准备，然后开始安装软件包。
@@ -15,8 +11,6 @@
 本章中软件包的安装顺序应当严格遵守，以确保没有一个程序会把 /tools 作为路径硬连接到代码中。同样不要并行编译包。并行编译可能会节省时间(特别是在双 CPU 的机器上)，但也可能造成程序包含 /tools 硬连接路径，以致在 /tools 目录被删除之后，程序无法运行。
 
 在每个软件包安装说明页的首部都提供了与该包相关的一些信息，包括：包内容的简要说明、编译大约所需时间、编译过程所需磁盘空间、编译所依赖的软件包。在安装说明之后还有该包所安装的程序和库的列表以及对它们的简要说明。
-
-# 6.2\. 挂载虚拟内核文件系统
 
 # 6.2\. 挂载虚拟内核文件系统
 
@@ -55,8 +49,6 @@ mount -vt tmpfs shm $LFS/dev/shm
 mount -vt proc proc $LFS/proc
 mount -vt sysfs sysfs $LFS/sys 
 ```
-
-# 6.3\. 包管理
 
 # 6.3\. 包管理
 
@@ -136,8 +128,6 @@ make DESTDIR=/usr/pkg/libfoo/1.1 install
 
 # 6.4\. 进入 Chroot 环境
 
-# 6.4\. 进入 Chroot 环境
-
 现在将要进入 chroot 环境开始编译安装最终的 LFS 系统了，注意：在这里我们只使用临时构建的工具。以 root 身份运行以下命令进入构建环境：
 
 ```
@@ -158,8 +148,6 @@ env 命令的参数 -i 的作用是清除所有 chroot 环境变量。后面是�
 ### 注意
 
 这一章剩下的命令以及后面几章的命令都是在 chroot 环境下进行的。如果你离开了这个环境（比如重启）， 要确保内核虚拟文件系统挂载，像在 节 6.2.2, "挂载并填充 /dev 目录" 和 节 6.2.3, "挂载虚拟内核文件系统" 描述的。在继续安装之前，再次进入 chroot 环境。
-
-# 6.5\. 创建系统目录结构
 
 # 6.5\. 创建系统目录结构
 
@@ -188,8 +176,6 @@ mkdir -pv /var/{opt,cache,lib/{misc,locate},local}
 ## 6.5.1\. FHS 兼容性说明
 
 我们的目录树是按照 FHS(Filesystem Hierarchy Standard) 标准([*http://www.pathname.com/fhs/*](http://www.pathname.com/fhs/))。 除了上面创建的目录外，该标准还规定了必须有 /usr/local/games 和 /usr/share/games 两个目录，但是作为一个基本系统，我们并不需要这些。如果你要完全的遵守 FHS 标准的话，就自己建立这两个目录。至于 /usr/local/share 目录下的子目录，FHS 标准规定得并不严格，所以我们就创建了(在我们看来)需要的子目录。
-
-# 6.6\. 创建必需的文件与符号连接
 
 # 6.6\. 创建必需的文件与符号连接
 
@@ -265,8 +251,6 @@ chmod -v 664 /var/run/utmp /var/log/lastlog
 
 # 6.7\. Linux-Libc-Headers-2.6.12.0
 
-# 6.7\. Linux-Libc-Headers-2.6.12.0
-
 Linux-Libc-Headers 包含"纯净的"内核头文件。
 
 **预计编译时间：** 少于 0.1 SBU**所需磁盘空间：** 27 MB
@@ -314,8 +298,6 @@ find /usr/include/{asm,linux} -type f -exec chmod -v 644 {} \;
 
 # 6.8\. Man-pages-2.34
 
-# 6.8\. Man-pages-2.34
-
 Man-pages 包含 1200 页的用户手册。
 
 **预计编译时间：** 少于 0.1 SBU**所需磁盘空间：** 18.4 MB
@@ -337,8 +319,6 @@ make install
 |  |  |
 | --- | --- |
 | `man pages` | 描述了 C 和 C++ 的函数、重要的设备文件、以及一些重要的配置文件。 |
-
-# 6.9\. Glibc-2.3.6
 
 # 6.9\. Glibc-2.3.6
 
@@ -610,8 +590,6 @@ EOF
 
 # 6.10\. 再次调整工具链
 
-# 6.10\. 再次调整工具链
-
 现在，最终的 C 库已经安装好了，我们需要再次调整工具链，让本章随后编译的那些工具都连接到这个库上。基本上，就是把 Chapter 5 中"调整工具链"那里做的调整给取消掉。在 Chapter 5 中，工具链使用的库是从宿主系统的 `/{,usr/}lib` 转向新安装的 `/tools/lib` 目录。同样的，现在工具链使用的库将从临时的 `/tools/lib` 转向 LFS 系统最终的 `/{,usr/}lib` 目录。
 
 首先，备份 `/tools` 下的链接，用我们在第五章中编译的链接器来替换，再创建一个链接到在 `/tools/$(gcc -dumpmachine)/bin` 中的复本。
@@ -716,8 +694,6 @@ rm -v dummy.c a.out dummy.log
 
 # 6.11\. Binutils-2.16.1
 
-# 6.11\. Binutils-2.16.1
-
 Binutils 是一组开发工具，包括连接器、汇编器和其他用于目标文件和档案的工具。
 
 **预计编译时间：** 1.5 SBU (含测试套件)**所需磁盘空间：** 172 MB (含测试套件)
@@ -812,8 +788,6 @@ cp -v ../binutils-2.16.1/include/libiberty.h /usr/include
 | `libiberty` | 包含许多 GNU 程序都会用到的函数，这些程序有： `getopt`， `obstack`， `strerror`， `strtol`， 和 `strtoul` |
 | `libbfd` | 二进制文件描述库 |
 | `libopcodes` | 用来处理 opcodes（"可读文本格式的"）处理器操作指令)的库，在生成一些应用程序的时候也会用到它，比如 `objdump` 。 |
-
-# 6.12\. GCC-4.0.3
 
 # 6.12\. GCC-4.0.3
 
@@ -1005,8 +979,6 @@ rm -v dummy.c a.out dummy.log
 
 # 6.13\. Berkeley DB-4.4.20
 
-# 6.13\. Berkeley DB-4.4.20
-
 Berkeley DB 包含一些程序和工具，供其他的一些程序来在做数据库相关函数时调用。
 
 **预计编译时间：** 1.2 SBU**所需磁盘空间：** 77 MB
@@ -1091,8 +1063,6 @@ chown -Rv root:root /usr/share/doc/db-4.4.20
 | `db_verify` | 对数据库文件进行一致性检查 |
 | `libdb.{so,a}` | 包含 db 处理相关函数的 C 库 |
 | `libdb_cxx.{so,a}` | 包含 db 处理相关函数的 C++库 |
-
-# 6.14\. Coreutils-5.96
 
 # 6.14\. Coreutils-5.96
 
@@ -1294,8 +1264,6 @@ mv -v /usr/bin/{head,sleep,nice} /bin
 
 # 6.15\. Iana-Etc-2.10
 
-# 6.15\. Iana-Etc-2.10
-
 Iana-Etc 软件包提供了网络服务和协议的数据。
 
 **预计编译时间：** 少于 0.1 SBU**所需磁盘空间：** 2.1 MB
@@ -1326,8 +1294,6 @@ make install
 | --- | --- |
 | `/etc/protocols` | 描述 TCP/IP 子系统可用的各种 Internet 协议。 |
 | `/etc/services` | 将 internet 服务映射到一个包含端口号和所使用协议的文本名称。 |
-
-# 6.16\. M4-1.4.4
 
 # 6.16\. M4-1.4.4
 
@@ -1366,8 +1332,6 @@ make install
 |  |  |
 | --- | --- |
 | `m4` | M4 能够将宏展开并将输入拷贝到输出。宏可以是内嵌的也可以是用户定义的，并且可以接受很多参数。除了展开宏，`m4` 还有其它内置的功能，比如包含引用文件、运行 Unix 命令、进行整数运算、文本操作、循环等等。`m4` 可以被用作一个编译器的前端或作为自身的一个宏处理程序。 |
-
-# 6.17\. Bison-2.2
 
 # 6.17\. Bison-2.2
 
@@ -1414,8 +1378,6 @@ make install
 | `bison` | 根据一系列规则来生成一个可以分析文本文件的结构的程序的程序，Bison 是一个替代 Yacc (Yet Another Compiler Compiler) 的语法分析程序生成器。 |
 | `yacc` | 一个 `bison` 的包装，意思是程序仍然调用 `yacc` 而不是 `bison` ，它用 *`-y`* 选项调用 `bison` 。 |
 | `liby.a` | acc 库包含与 Yacc 兼容的 `yyerror` 和 `main` 函数，这个库通常不是很有用，但是 POSIX 需要它。 |
-
-# 6.18\. Ncurses-5.5
 
 # 6.18\. Ncurses-5.5
 
@@ -1539,8 +1501,6 @@ cp -av lib/lib*.so.5* /usr/lib
 
 # 6.19\. Procps-3.2.6
 
-# 6.19\. Procps-3.2.6
-
 Procps 包含有用于监视系统进程的程序。
 
 **预计编译时间：** 0.1 SBU**所需磁盘空间：** 2.3 MB
@@ -1589,8 +1549,6 @@ make install
 
 # 6.20\. Sed-4.1.5
 
-# 6.20\. Sed-4.1.5
-
 Sed 是一个流编辑器。
 
 **预计编译时间：** 0.1 SBU**所需磁盘空间：** 6.4 MB
@@ -1635,8 +1593,6 @@ make install
 
 # 6.21\. Libtool-1.5.22
 
-# 6.21\. Libtool-1.5.22
-
 GNU libtool 是一个通用库支持脚本，将使用动态库的复杂性隐藏在统一的、可移植的接口中。
 
 **预计编译时间：** 0.1 SBU**所需磁盘空间：** 16.6 MB
@@ -1674,8 +1630,6 @@ make install
 | `libtool` | 提供通用的库编译支持。 |
 | `libtoolize` | 提供了一种标准方式来将 `libtool` 支持加入到一个软件包中 |
 | `libltdl` | 隐藏 dlopening 库的复杂细节 |
-
-# 6.22\. Perl-5.8.8
 
 # 6.22\. Perl-5.8.8
 
@@ -1764,8 +1718,6 @@ make install
 
 # 6.23\. Readline-5.1
 
-# 6.23\. Readline-5.1
-
 Readline 软件包是一个提供命令行编辑和历史纪录功能的库集合。
 
 **预计编译时间：** 0.1 SBU**所需磁盘空间：** 10.2 MB
@@ -1844,8 +1796,6 @@ ln -sfv ../../lib/libhistory.so.5 /usr/lib/libhistory.so
 
 # 6.24\. Zlib-1.2.3
 
-# 6.24\. Zlib-1.2.3
-
 Zlib 软件包包含 zlib 库，很多程序中的压缩或者解压缩程序都会用到这个库。
 
 **预计编译时间：** 少于 0.1 SBU**所需磁盘空间：** 3.1 MB
@@ -1917,8 +1867,6 @@ chmod -v 644 /usr/lib/libz.a
 
 # 6.25\. Autoconf-2.59
 
-# 6.25\. Autoconf-2.59
-
 Autoconf 能生成用于自动配置源代码的 shell 脚本
 
 **预计编译时间：** 少于 0.1 SBU**所需磁盘空间：** 7.2 MB
@@ -1960,8 +1908,6 @@ make install
 | `autoscan` | 为软件包创建 `configure.in` 文件。它以命令行参数中指定的目录为根(如果未给定参数则以当前目录为根)的目录树中检查源文件，搜索其中的可移植性问题，为那个软件包创建一个 `configure.scan` 文件以充当一个预备性的 `configure.in` 文件。 |
 | `autoupdate` | 将 `configure.in` 文件中 `autoconf` 宏的旧名称更新为当前名称 |
 | `ifnames` | 为一个软件包写 `configure.in` 文件提供帮助，它打印软件包中那些在 C 预处理器中已经使用了的标识符。如果一个包已经设置成具有某些可移植属性，这个程序能够帮助指出它的 `configure` 脚本应该如何检查。它可以用来填补由 `configure.in` 产生的 `autoscan` 中的隔阂。 |
-
-# 6.26\. Automake-1.9.6
 
 # 6.26\. Automake-1.9.6
 
@@ -2016,8 +1962,6 @@ make install
 | `py-compile` | 编译 Python 程序 |
 | `symlink-tree` | 为整个目录创建符号链接的脚本 |
 | `ylwrap` | 包装了 `lex` 和 `yacc` 的脚本 |
-
-# 6.27\. Bash-3.1
 
 # 6.27\. Bash-3.1
 
@@ -2089,8 +2033,6 @@ exec /bin/bash --login +h
 | `bash` | 作为命令行解释器被广泛使用。它能在执行命令前解释非常复杂的命令行参数，这使它成为一个强大的工具。 |
 | `bashbug` | 帮助用户用标准格式编写和提交有关 `bash` 的 bug 报告的脚本。 |
 | `sh` | 指向 `bash` 的符号连接。当运行 `sh` 的时候，`bash` 会尽量模仿老的 `sh` 历史环境来运行，同时遵循 POSIX 标准。 |
-
-# 6.28\. Bzip2-1.0.3
 
 # 6.28\. Bzip2-1.0.3
 
@@ -2179,8 +2121,6 @@ ln -sv bzip2 /bin/bzcat
 
 # 6.29\. Diffutils-2.8.1
 
-# 6.29\. Diffutils-2.8.1
-
 Diffutils 软件包里的程序向你显示两个文件或目录的差异，常用来生成软件的补丁。
 
 **预计编译时间：** 0.1 SBU**所需磁盘空间：** 6.3 MB
@@ -2231,8 +2171,6 @@ make install
 | `diff` | 比较两个文件或目录，并指出哪些文件的哪些行不同。 |
 | `diff3` | 逐行比较三个文件 |
 | `sdiff` | 合并两个文件，并以交互方式输出结果 |
-
-# 6.30\. E2fsprogs-1.39
 
 # 6.30\. E2fsprogs-1.39
 
@@ -2345,8 +2283,6 @@ make install-libs
 
 # 6.31\. File-4.17
 
-# 6.31\. File-4.17
-
 File 是用来判断文件类型的工具。
 
 **预计编译时间：** 0.1 SBU**所需磁盘空间：** 7.5 MB
@@ -2383,8 +2319,6 @@ make install
 | --- | --- |
 | `file` | 测试每一个指定的文件并且试图对它们进行分类。有三个测试集，按照下面的顺序执行：文件系统测试、幻数(magic number)测试、语言测试。第一个测试成功后会打印文件文件类型。 |
 | `libmagic` | 包含产生幻数(magic number)的函数，供`file`程序使用。 |
-
-# 6.32\. Findutils-4.2.27
 
 # 6.32\. Findutils-4.2.27
 
@@ -2443,8 +2377,6 @@ sed -i -e 's/find:=${BINDIR}/find:=\/bin/' /usr/bin/updatedb
 | `locate` | 扫描一个文件名称数据库，可以列出在数据库中符合条件的文件或者目录。 |
 | `updatedb` | 更新 `locate` 数据库。它会扫描整个文件系统，包括所有挂载的文件系统(除非设定参数禁止)，并且把每一个找到的文件和目录放到 `locate` 数据库里面。 |
 | `xargs` | 可以在一系列文件上运行同一个命令 |
-
-# 6.33\. Flex-2.5.33
 
 # 6.33\. Flex-2.5.33
 
@@ -2508,8 +2440,6 @@ chmod -v 755 /usr/bin/lex
 
 # 6.34\. GRUB-0.97
 
-# 6.34\. GRUB-0.97
-
 GRUB 程序包包含 GRand 统一引导装载程序。
 
 **预计编译时间：** 0.2 SBU**所需磁盘空间：** 10.2 MB
@@ -2564,8 +2494,6 @@ i386-pc 目录还包含一些 *stage1_5 文件，是为不同的文件系统准�
 | `grub-set-default` | 为 Grub 设置默认启动入口 |
 | `grub-terminfo` | 从 terminfo 名称产生 terminfo 命令。如果你在一个不常见的终端时，可以使用这个命令。 |
 | `mbchk` | 检查多重启动内核的格式 |
-
-# 6.35\. Gawk-3.1.5
 
 # 6.35\. Gawk-3.1.5
 
@@ -2626,8 +2554,6 @@ make install
 | `pgawk` | `gawk` 的概要分析(profiling)版本 |
 | `pgawk-3.1.5` | `pgawk` 的硬链接 |
 | `pwcat` | `/etc/passwd` 读取密码数据库 |
-
-# 6.36\. Gettext-0.14.5
 
 # 6.36\. Gettext-0.14.5
 
@@ -2696,8 +2622,6 @@ make install
 
 # 6.37\. Grep-2.5.1a
 
-# 6.37\. Grep-2.5.1a
-
 Grep 可以搜索文件中符合指定匹配模式的行。
 
 **预计编译时间：** 0.1 SBU**所需磁盘空间：** 4.8 MB
@@ -2747,8 +2671,6 @@ make install
 | `egrep` | 打印出匹配扩展正则表达式模式的行 |
 | `fgrep` | 对固定字符串列表进行匹配 |
 | `grep` | 对基本正则表达式进行匹配 |
-
-# 6.38\. Groff-1.18.1.1
 
 # 6.38\. Groff-1.18.1.1
 
@@ -2847,8 +2769,6 @@ ln -sv tbl /usr/bin/gtbl
 
 # 6.39\. Gzip-1.3.5
 
-# 6.39\. Gzip-1.3.5
-
 gzip 包含用 Lempel-Ziv 编码(LZ77)来压缩和解压文件的程序。
 
 **预计编译时间：** 少于 0.1 SBU**所需磁盘空间：** 2.2 MB
@@ -2921,8 +2841,6 @@ ln -sv gunzip /bin/uncompress
 | `zless` | 在压缩文件上调用 `less` 命令 |
 | `zmore` | 在压缩文件上调用 `more` 命令 |
 | `znew` | 将`.Z`格式的文件(使用 compress 压缩)转压缩成`.gz`格式(使用 gzip 压缩) |
-
-# 6.40\. Inetutils-1.4.2
 
 # 6.40\. Inetutils-1.4.2
 
@@ -3010,8 +2928,6 @@ mv -v /usr/bin/ping /bin
 
 # 6.41\. IPRoute2-2.6.16-060323
 
-# 6.41\. IPRoute2-2.6.16-060323
-
 IPRoute2 包含了基本的和高级的基于 IPv4 网络的程序。
 
 **预计编译时间：** 0.2 SBU**所需磁盘空间：** 4.8 MB
@@ -3067,8 +2983,6 @@ mv -v /sbin/arpd /usr/sbin
 | `rtstat` | 路由状态工具 |
 | `ss` | 类似于 `netstat` 命令，显示活动的连接。 |
 | `tc` | 流量控制，用于实现服务质量(QOS)和服务级别(COS)：`tc qdisc` 建立排队规则`tc class` 建立基于级别的队列调度`tc estimator` 估算网络流量`tc filter` 设置 QOS/COS 包过滤器`tc policy` 设置 QOS/COS 规则 |
-
-# 6.42\. Kbd-1.12
 
 # 6.42\. Kbd-1.12
 
@@ -3163,8 +3077,6 @@ mv -v /usr/bin/{kbd_mode,openvt,setfont} /bin
 
 # 6.43\. Less-394
 
-# 6.43\. Less-394
-
 Less 软件包包含一个文本文件查看器。
 
 **预计编译时间：** 0.1 SBU**所需磁盘空间：** 2.6 MB
@@ -3211,8 +3123,6 @@ make install
 
 # 6.44\. Make-3.80
 
-# 6.44\. Make-3.80
-
 Make 自动地确定一个大型程序的哪些片段需要重新编译，并且发出命令去重新编译它们。
 
 **预计编译时间：** 0.1 SBU**所需磁盘空间：** 7.8 MB
@@ -3248,8 +3158,6 @@ make install
 |  |  |
 | --- | --- |
 | `make` | 自动地确定一个大型程序的哪些片段需要重新编译，并且发出命令去重新编译它们。 |
-
-# 6.45\. Man-DB-2.4.3
 
 # 6.45\. Man-DB-2.4.3
 
@@ -3423,8 +3331,6 @@ make install
 
 # 6.46\. Mktemp-1.5
 
-# 6.46\. Mktemp-1.5
-
 Mktemp 软件包包含用于在 shell 脚本中创建安全临时文件的程序。
 
 **预计编译时间：** 少于 0.1 SBU**所需磁盘空间：** 0.4 MB
@@ -3474,8 +3380,6 @@ make install-tempfile
 | --- | --- |
 | `mktemp` | 使用安全性较强的方式创建临时文件，用于脚本中。 |
 | `tempfile` | 使用比 `mktemp` 安全性较弱的方式创建临时文件，但是能够满足向后的兼容性。 |
-
-# 6.47\. Module-Init-Tools-3.2.2
 
 # 6.47\. Module-Init-Tools-3.2.2
 
@@ -3542,8 +3446,6 @@ make INSTALL=install install
 
 # 6.48\. Patch-2.5.4
 
-# 6.48\. Patch-2.5.4
-
 Patch 根据"补丁"文件的内容来修改原来的文件。补丁文件通常是用 `diff`程序创建的，包含如何修改文件的指导。
 
 **预计编译时间：** 少于 0.1 SBU**所需磁盘空间：** 1.6 MB
@@ -3579,8 +3481,6 @@ make install
 |  |  |
 | --- | --- |
 | `patch` | 根据一个`patch` 文件来对文件进行修改。通常情况下，一个 patch 文件是一个差别清单。这个清单用`diff`程序创建。通过将这些差别应用到原始文件，patch 创建出修订版本。 |
-
-# 6.49\. Psmisc-22.2
 
 # 6.49\. Psmisc-22.2
 
@@ -3641,8 +3541,6 @@ ln -sv killall /bin/pidof
 | `oldfuser` | 报告使用所给文件或文件系统的进程的进程 ID(PID)。 |
 | `pstree` | 以目录树的形式显示所有正在运行的进程 |
 | `pstree.x11` | 同 `pstree` ，只是它在退出前要求确认 |
-
-# 6.50\. Shadow-4.0.15
 
 # 6.50\. Shadow-4.0.15
 
@@ -3821,8 +3719,6 @@ passwd root
 
 # 6.51\. Sysklogd-1.4.1
 
-# 6.51\. Sysklogd-1.4.1
-
 Sysklogd 包含记录系统日志信息的程序，比如内核处理意外事务的日志。
 
 **预计编译时间：** 少于 0.1 SBU**所需磁盘空间：** 0.6 MB
@@ -3885,8 +3781,6 @@ EOF
 | --- | --- |
 | `klogd` | 一个系统守护进程，截获并且记录下 LINUX 内核日志信息。 |
 | `syslogd` | 记录下系统里所有提供日志记录的程序给出的日志和信息内容。每一个被记录的消息至少包含时间戳和主机名(通常还包括程序名)。 |
-
-# 6.52\. Sysvinit-2.86
 
 # 6.52\. Sysvinit-2.86
 
@@ -3980,8 +3874,6 @@ EOF
 
 # 6.53\. Tar-1.15.1
 
-# 6.53\. Tar-1.15.1
-
 Tar 包含一个归档程序。
 
 **预计编译时间：** 0.2 SBU**所需磁盘空间：** 13.7 MB
@@ -4036,8 +3928,6 @@ make install
 | --- | --- |
 | `rmt` | 通过一个 Internet 连接线程实施远程操作一个磁带驱动器 |
 | `tar` | 从压缩档案里创建和解压文件，也可理解为压缩包(tarball)。 |
-
-# 6.54\. Texinfo-4.8
 
 # 6.54\. Texinfo-4.8
 
@@ -4116,8 +4006,6 @@ done
 | `texi2dvi` | 把给定的 Texinfo 文档格式化成可打印的设备无关的文件 |
 | `texi2pdf` | 将 Texinfo 文档转化成 PDF 文件 |
 | `texindex` | 对 Texinfo 索引文件进行排序 |
-
-# 6.55\. Udev-096
 
 # 6.55\. Udev-096
 
@@ -4216,8 +4104,6 @@ install -m644 -D -v docs/writing_udev_rules/index.html \
 | `usb_id` | 为 Udev 提供关于 USB 设备的信息 |
 | `vol_id` | 为 Udev 提供一个文件系统的 label 和 uuid |
 | `/etc/udev` | 包含 `udev` 配置文件、设备许可、设备命名规则。 |
-
-# 6.56\. Util-linux-2.12r
 
 # 6.56\. Util-linux-2.12r
 
@@ -4344,8 +4230,6 @@ make HAVE_KILL=yes HAVE_SLN=yes install
 | `vidmode` | 查询和设置视频模式 |
 | `whereis` | 确定某命令二进制文件、源文件、手册文档的位置 |
 | `write` | 发一个消息给另一个用户，*如果*他开启了 writting 的话。 |
-
-# 6.57\. Vim-7.0
 
 # 6.57\. Vim-7.0
 
@@ -4505,8 +4389,6 @@ set spell
 
 # 6.58\. 关于调试符号
 
-# 6.58\. 关于调试符号
-
 在缺省情况下，大多数程序和库都是带调试符号(使用 `gcc` 的 *`-g`* 选项)编译的。 当调试一个带调试符号的程序时，调试器不仅能给出内存地址，还能给出函数和变量的名字。
 
 但是，这些调试符号明显地增大了程序和库。想知道这些调试符能带来多大的差异，请看下面的统计资料：
@@ -4522,8 +4404,6 @@ set spell
 根据使用的编译器和连接动态程序的 C 库的版本的不同，文件的大小可能会有所不同，但是比较带调试符号与不带调试符号的程序的比较结果应该不会改变，大概是 2~5 倍大小。
 
 由于大多数人都不会在系统软件上使用调试器，把这些符号去掉就能节省大量的空间。下一节将给您展示如何从程序和库文件中去除所有调试符号链接。附加的信息在系统优化信息里可以找到 [*http://www.linuxfromscratch.org/hints/downloads/files/optimization.txt*](http://www.linuxfromscratch.org/hints/downloads/files/optimization.txt)。
-
-# 6.59\. 再次清理系统
 
 # 6.59\. 再次清理系统
 
@@ -4556,8 +4436,6 @@ chroot $LFS /tools/bin/env -i \
 很多文件将被报告说不能识别它们的文件格式，这些警告可以安全地忽略。这些警告只是表明那些文件是脚本而不是二进制文件。
 
 如果硬盘空间非常紧张，这个 *`--strip-all`* 选项可以被用在二进制文件目录 `/{,usr/}{bin,sbin}` 中以获得更多的空间。不要在库文件里使用这个参数，因为这个参数将会破坏库文件。
-
-# 6.60\. 最终的清理
 
 # 6.60\. 最终的清理
 

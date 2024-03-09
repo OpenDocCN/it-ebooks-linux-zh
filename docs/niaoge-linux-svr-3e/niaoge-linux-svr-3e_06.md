@@ -1,7 +1,5 @@
 # 第四章、连上 Internet
 
-# 第四章、连上 Internet
-
 最近更新日期：2011/07/20
 
 终于要来到修改 Linux 网络参数的章节了！在[第二章的网络基础](http://linux.vbird.org/linux_server/0110network_basic.php)中， 我们知道主机要连上 Internet 需要一些正确的网络参数设定，这些设定在 Windows 系统上面的修改则在[第三章的局域网络架构](http://linux.vbird.org/linux_server/0120intranet.php)中说明了。在这一章当中，我们则主要以固定 IP 的设定方式来修改 Linux 的网络参数，同时，也会介绍如何使用 ADSL 的拨接方式来上网，此外，因为 Cable modem 使用者也不在少数，所以我们也说明一下 Cable modem 在 Linux 下的设定方式喔！ 最后，由于笔记本电脑使用者大增，且因为笔记本电脑常使用无线网络，因此本文也加入了无线网络的联机介绍啊！

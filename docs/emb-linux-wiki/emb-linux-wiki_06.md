@@ -1,12 +1,8 @@
 # Android 入口
 
-# Android 入口
-
 [Android](http://en.wikipedia.org/wiki/Google_Android "wikipedia entry") 是 Google 和 开放手机联盟（Open Handset Alliance）开发的一款软件平台和操作系统，专为小型设备和智能手机设计。
 
 包含 Android 开发相关的各个方面，从新手入门、Android Linux 内核、Android 系统、应用开发到 Android 社区以及各类基于 Android 开发的产品信息。
-
-# 新手入门
 
 # 新手入门
 
@@ -842,8 +838,6 @@ At the end of the day Android is not a single monolithic uniform environment. Th
 
 # Android Linux 内核
 
-# Android Linux 内核
-
 Android 使用 Linux 作为底层的内核，并且对 Linux 做了改造，为智能设备定制了诸多新特性。
 
 # Where to obtain
@@ -1440,8 +1434,6 @@ The Nexus One has 512MB of RAM and honestly that is really more than we know wha
 [Category](http://eLinux.org/Special:Categories "Special:Categories"):
 
 *   [Android](http://eLinux.org/Category:Android "Category:Android")
-
-# Android 系统信息
 
 # Android 系统信息
 
@@ -3356,8 +3348,6 @@ See [Android Compliance Test Suite](http://eLinux.org/Android_Compliance_Test_Su
 
 # 基于 Android 的系统
 
-# 基于 Android 的系统
-
 介绍与 Android 产品相关的信息，内容涵盖 Android 移植、如何获得系统 Root 权限、Android 应用开发、各类派生 ROM、Android 模拟器以及相关开发和测试等。
 
 # Products (announced & shipped)
@@ -3942,8 +3932,6 @@ Cheers,
 ## See also
 
 *   [KBOX Linux emulator for Android](http://eLinux.org/KBOX_Linux_emulator_for_Android "KBOX Linux emulator for Android")
-
-# Android 社区
 
 # Android 社区
 

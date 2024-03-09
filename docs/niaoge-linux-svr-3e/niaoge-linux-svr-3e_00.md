@@ -1,7 +1,5 @@
 # 鸟哥的 Linux 私房菜：服务器架设篇 第三版
 
-# 鸟哥的 Linux 私房菜：服务器架设篇 第三版
-
 > 来源：[鸟哥的 Linux 私房菜：服务器架设篇](http://vbird.dic.ksu.edu.tw/linux_server/)
 
 ## 特别强调

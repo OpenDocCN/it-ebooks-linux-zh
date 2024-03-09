@@ -263,8 +263,6 @@ Error: getaddrinfo ENOTFOUND elinux.org
 
 # 任务分工
 
-# 任务分工
-
 ## 认领任务
 
 请在下面的任务列表中认领一个任务，并在条目后面追加上自己的 Github ID 和链接，避免其他同学同时翻译，例如：

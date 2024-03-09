@@ -1,9 +1,5 @@
 # IV. 附录
 
-# IV. 附录
-
-# A. 缩写和名词
-
 # A. 缩写和名词
 
 |  |  |
@@ -88,8 +84,6 @@
 | **VC** | Virtual Console |
 | **VGA** | Video Graphics Array |
 | **VT** | Virtual Terminal |
-
-# B. 致谢
 
 # B. 致谢
 
@@ -244,8 +238,6 @@ We would like to thank the following people and organizations for their contribu
 *   [*VA Software*](http://www.vasoftware.com) who, on behalf of [*Linux.com*](http://www.linux.com), donated a VA Linux 420 (former StartX SP2) workstation
 
 *   Mark Stone for donating Belgarath, the linuxfromscratch.org server
-
-# C. 依赖关系
 
 # C. 依赖关系
 

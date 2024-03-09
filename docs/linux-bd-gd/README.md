@@ -1,7 +1,5 @@
 # Linux From Scratch
 
-# Linux From Scratch
-
 版本 6.2
 
 Gerard Beekmans

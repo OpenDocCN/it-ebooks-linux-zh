@@ -1,7 +1,5 @@
 # 第二十二章、邮件服务器： Postfix
 
-# 第二十二章、邮件服务器： Postfix
-
 最近更新日期：2011/08/10
 
 在这个邮件服务器的架设中，我们首先谈论 Mail 与 [DNS](http://linux.vbird.org/linux_server/0350dns.php) 的重要相关性，然后依序介绍 Mail Server 的相关名词，以及 Mail Server 的运作基本流程与协议，也会谈到相关的 Relay 与邮件认证机制等项目， 这些项目对于未来邮件服务器的管理与设定是重要的，请不要忽略了这方面问题的讨论喔。 由于 Postfix 的配置文件内容较具有亲和性，因此我们单纯介绍了 Postfix 不再介绍 sendmail 了。

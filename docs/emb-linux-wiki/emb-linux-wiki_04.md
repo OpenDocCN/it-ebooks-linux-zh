@@ -1,10 +1,6 @@
 # 工具箱
 
-# 工具箱
-
 演示嵌入式 Linux 开发相关的各类工具，包括工具链、调试器和其他开发工具等信息，也有介绍到一些调试心得和技巧。
-
-# 开发工具
 
 # 开发工具
 
@@ -1053,8 +1049,6 @@ See also
 
 # 开发者资源
 
-# 开发者资源
-
 Linux 内核相关的各类资源，包括线上文档、书籍、影音等等。
 
 # Linux Kernel Resources
@@ -1469,8 +1463,6 @@ One of the primitive programming languages it was developed by Dennis Ritchie, i
 Book: The C Programming language by Brian Kernighan and Dennis Ritchie
 
 Online Resources: [`www.learn-c.org/`](http://www.learn-c.org/) (Interactive)
-
-# 要诀和技巧
 
 # 要诀和技巧
 
@@ -1896,8 +1888,6 @@ The compilers temporary files are saved. This is often invaluable dealing with c
 *   [Development Tools](http://eLinux.org/Category:Development_Tools "Category:Development Tools")
 *   [Tips and Tricks](http://eLinux.org/Category:Tips_and_Tricks "Category:Tips and Tricks")
 *   [Compiler](http://eLinux.org/Category:Compiler "Category:Compiler")
-
-# 杂项与收藏
 
 # 杂项与收藏
 

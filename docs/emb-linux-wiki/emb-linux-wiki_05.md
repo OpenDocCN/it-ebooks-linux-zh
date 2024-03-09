@@ -1,7 +1,5 @@
 # 调试入口
 
-# 调试入口
-
 主讲调试相关内容，目前主要关注内核部分的调试，后续会补充用户空间的调试内容。
 
 # 内核调试
@@ -1706,8 +1704,6 @@ TODO Content:
 
 *   [Development Tools](http://eLinux.org/Category:Development_Tools "Category:Development Tools")
 *   [Tips and Tricks](http://eLinux.org/Category:Tips_and_Tricks "Category:Tips and Tricks")
-
-# External Links
 
 # External Links
 

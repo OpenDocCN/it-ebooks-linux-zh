@@ -1,9 +1,5 @@
 # 9\. 结束
 
-# 9\. 结束
-
-# 9.1\. 结束
-
 # 9.1\. 结束
 
 顺利完成了！新 LFS 系统已经安装完成！我们祝贺你在闪亮的自定义的 Linux 系统上有更多的成功。
@@ -19,8 +15,6 @@ echo 6.2 > /etc/lfs-release
 现在你已经完成本书全部步骤，你想成为 LFS 计算内的用户吗？ 从 [*http://www.linuxfromscratch.org/cgi-bin/lfscounter.cgi*](http://www.linuxfromscratch.org/cgi-bin/lfscounter.cgi) 上输入你的姓名和你使用的第一个 LFS 版本注册为 LFS 用户。
 
 现在让我们重启进入 LFS 系统。
-
-# 9.3\. 重启系统
 
 # 9.3\. 重启系统
 
@@ -65,8 +59,6 @@ shutdown -r now
 早先的概要说明时，假如 GRUB 引导装载程序已经设置，按照启动菜单的设置可自动启动 *LFS 6.2* 。
 
 当重启完毕，LFS 系统已经准备使用更多你需要增加的程序。
-
-# 9.4\. 现在做什么?
 
 # 9.4\. 现在做什么?
 

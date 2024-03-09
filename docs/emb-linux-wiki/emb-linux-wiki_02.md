@@ -1,7 +1,5 @@
 # 贡献者
 
-# 贡献者
-
 ## 翻译
 
 *   [@lzufalcon](https://github.com/lzufalcon) (12)

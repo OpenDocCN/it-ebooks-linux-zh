@@ -1,9 +1,5 @@
 # 7\. 配置系统启动脚本
 
-# 7\. 配置系统启动脚本
-
-# 7.1\. 简介
-
 # 7.1\. 简介
 
 本章详细描述了如何安装并恰当配置启动脚本(LFS-Bootscripts)，大多数脚本无需修改就可运行，但少数需要附加配置文件，因为它们与硬件相关。
@@ -11,8 +7,6 @@
 因为 System-V 风格的初始化脚本被广泛使用，因此本书使用这种风格的脚本，作为补充选项，在 [*http://www.linuxfromscratch.org/hints/downloads/files/bsd-init.txt*](http://www.linuxfromscratch.org/hints/downloads/files/bsd-init.txt) 可以找到一个详细设计 BSD 风格启动初始化的提示。在 LFS 邮件列表里搜索"depinit"还可以找到更多选择。
 
 如果您使用其它风格的初始化脚本，请跳过本章继续进行 Chapter 8 。
-
-# 7.2\. LFS-Bootscripts-6.2
 
 # 7.2\. LFS-Bootscripts-6.2
 
@@ -60,8 +54,6 @@ make install
 
 # 7.3\. 启动脚本是如何工作的?
 
-# 7.3\. 启动脚本是如何工作的?
-
 Linux 使用的是基于 *运行级(run-levels)* 概念的称为 SysVinit 的专用启动工具。它在不同的系统上可能是完全不一样的，所以不能认为一个脚本在某个 Linux 发行版上工作正常，于是在 LFS 中也会正常工作。LFS 有自己的一套规则，当然，LFS 也遵守一些公认的标准。
 
 SysVinit(从现在开始我们称之为"init")以运行级的模式来工作，一般有 7 个运行级(从 0 到 6，实际上可以有更多的运行级，但都是用于特殊情况而且一般使用不到。 参见 `init(8)` 以获得更多信息)，每个运行级对应于一套设定好的任务，当启动一个运行级的时候，计算机就需要执行相应的任务。默认的运行级是 3，下面是对不同运行级的描述：
@@ -99,8 +91,6 @@ SysVinit(从现在开始我们称之为"init")以运行级的模式来工作，�
 显示服务的状态，如果服务正在运行，会显示该服务进程的 PID 。
 
 您可以自由修改启动进程工作的方式(毕竟这是您自己的 LFS 系统)，我们这里给出的文件只是它们怎样工作的一个示例而已。
-
-# 7.4\. LFS 系统的设备和模块处理
 
 # 7.4\. LFS 系统的设备和模块处理
 
@@ -209,8 +199,6 @@ blacklist forte
 
 # 7.5\. 配置 setclock 脚本
 
-# 7.5\. 配置 setclock 脚本
-
 The `setclock`脚本从硬件时钟，也就是 BIOS 或 CMOS 时钟读取时间。如果硬件时钟设置为 UTC ，这个脚本会使用 `/etc/localtime` 文件(这个文件把用户所在的时区告诉 `hwclock` 程序)将硬件时钟的时间转换为本地时间。没有办法自动检测硬件时钟是否设置为 UTC 时间，因此需要手动设置。
 
 如果您忘了硬件时钟是不是设置为 UTC 时间了，可以运行 **`hwclock --localtime --show`** 命令，这将显示硬件时钟当前的时间。如果显示的时间符合您的手表的时间，那么硬件时钟设置的是本地时间；如果 `hwclock` 显示的不是本地时间，就有可能设置的是 UTC 时间，可以通过在所显示的 `hwclock` 时间加上或减去您所在时区的小时数来验证。例如，如果您所在的时区是 MST(美国山区时区)，已知是 GMT -0700，在本地时间上加 7 小时。
@@ -230,8 +218,6 @@ EOF
 ```
 
 在 [*http://www.linuxfromscratch.org/hints/downloads/files/time.txt*](http://www.linuxfromscratch.org/hints/downloads/files/time.txt) 有一个很好的关于如何处理 LFS 时间的提示，说明了例如时区、UTC、`TZ` 环境变量等等问题。
-
-# 7.6\. 配置 Linux 控制台
 
 # 7.6\. 配置 Linux 控制台
 
@@ -344,11 +330,7 @@ BROKEN_COMPOSE
 
 # 7.7\. 配置 sysklogd 脚本
 
-# 7.7\. 配置 sysklogd 脚本
-
 `sysklogd` 脚本用 *`-m 0`* 选项调用 `syslogd` 程序，该选项关闭了周期时间戳标记，这个标记默认让 `syslogd` 每 20 分钟写入一次 log 文件。要打开周期时间戳标记，请编辑 `sysklogd` 脚本做相应修改。请运行 **`man syslogd`** 以获得更多信息。
-
-# 7.8\. 创建 /etc/inputrc 文件
 
 # 7.8\. 创建 /etc/inputrc 文件
 
@@ -407,8 +389,6 @@ set bell-style none
 # End /etc/inputrc
 EOF 
 ```
-
-# 7.9\. Bash Shell 启动文件
 
 # 7.9\. Bash Shell 启动文件
 
@@ -499,8 +479,6 @@ EOF
 
 # 7.10\. 配置 localnet 脚本
 
-# 7.10\. 配置 localnet 脚本
-
 `localnet`脚本的一部分工作是设置系统的主机名，这需要在 `/etc/sysconfig/network` 文件里配置。
 
 运行下面的命令创建 `/etc/sysconfig/network` 文件并设置主机名：
@@ -510,8 +488,6 @@ echo "HOSTNAME=<lfs>" > /etc/sysconfig/network
 ```
 
 *`<lfs>`* 请用您的计算机名替换 *`[lfs]`* ，不要在这里输入全限定域名(Fully Qualified Domain Name)，FQDN 的信息稍后将放在 `/etc/hosts` 文件里。
-
-# 7.11\. 定制 /etc/hosts 文件
 
 # 7.11\. 定制 /etc/hosts 文件
 
@@ -560,8 +536,6 @@ cat > /etc/hosts << "EOF"
 # End /etc/hosts (no network card version)
 EOF 
 ```
-
-# 7.12\. 为设备创建惯用符号连接
 
 # 7.12\. 为设备创建惯用符号连接
 
@@ -633,8 +607,6 @@ EOF
 结果 `/dev/video0` 和 `/dev/video1` 设备仍然随机指向调谐器和网络摄像头（因此不应当直接使用），但是符号链接 `/dev/tvtuner` 和 `/dev/webcam` 总是指向正确的设备。
 
 关于书写 Udev 规则的更多信息，可以查看 `/usr/share/doc/udev-096/index.html`。
-
-# 7.13\. 配置网络脚本
 
 # 7.13\. 配置网络脚本
 
