@@ -3700,20 +3700,6 @@ s. as well the [installation section on android-x86.org](http://www.android-x86.
 
 for mounting an sd card see [[1]](http://www.android-x86.org/documents/sdcardhowto)
 
-### navigation
-
-*   HOME \<- windows key left
-*   BACK \<- esc
-*   MENU \<- menu-key
-
-touchscreen or mouse
-
-touch the right end of statusbar to activate or deactivate the following functions
-
-*   HOME \<- touch status bar
-*   MENU \<- touch statusbar from left to right.
-*   BACK \<- touch t statusbar from right to left.
-
 ### sound
 
 **Keys on ASUS EeePC**

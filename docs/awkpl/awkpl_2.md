@@ -81,11 +81,6 @@ BEGIN 和 END 不与其他模式组合。范围模式不可以是任何其他模
 
 © Copyright 2012, youngsterxyf. Last updated on Apr 11, 2016. Created using [Sphinx](http://sphinx-doc.org/) 1.3.5.
 
-### Navigation
-
-*   index
-*   AWK 程序设计语言 »
-
 # Index
 
 © Copyright 2012, youngsterxyf. Last updated on Apr 11, 2016. Created using [Sphinx](http://sphinx-doc.org/) 1.3.5.

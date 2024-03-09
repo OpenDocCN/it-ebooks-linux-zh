@@ -1,9 +1,3 @@
-### Navigation
-
-*   index
-*   next |
-*   AWK 程序设计语言 »
-
 # AWK 程序设计语言
 
 作者： Alfred V. Aho , Brian W. Kernighan , Peter J. Weinberger

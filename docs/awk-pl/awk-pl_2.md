@@ -1,9 +1,3 @@
-### Navigation
-
-*   index
-*   previous |
-*   AWK 程序设计语言 »
-
 # 二. AWK 语言详解
 
 本章将主要通过示例来解释构成 awk 程序的概念。因为这是对语言的全面描述，材料会很详细，因此我们推荐你浏览略读，需要的时候再回来核对细节。
@@ -84,11 +78,6 @@ BEGIN 和 END 不与其他模式组合。范围模式不可以是任何其他模
 * * *
 
 © Copyright 2012, youngsterxyf. Last updated on Apr 11, 2016. Created using [Sphinx](http://sphinx-doc.org/) 1.3.5.
-
-### Navigation
-
-*   index
-*   AWK 程序设计语言 »
 
 # Index
 
