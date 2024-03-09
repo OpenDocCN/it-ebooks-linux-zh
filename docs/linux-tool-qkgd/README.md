@@ -1,9 +1,3 @@
-### 导航
-
-*   索引
-*   下一页 |
-*   Linux Tools Quick Tutorial »
-
 # Linux 工具快速教程
 
 ## 前言

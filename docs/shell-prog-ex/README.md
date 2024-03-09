@@ -1,11 +1,10 @@
-# 介紹
+# Shell 编程范例
 
 > 本书来源：[开源书籍：Shell 编程范例](http://www.tinylab.org/open-shell-book/) (by [泰晓科技](http://tinylab.org))
 > 报名参与：*Star/fork* [GitHub 仓库](https://github.com/tinyclub/open-shell-book) 并发送 *Pull Request*
 > 关注我们：扫描二维码 关注 [@泰晓科技](http://weibo.com/tinylaborg) 微博和微信公众号
 > 赞助我们：赞助 8.99￥，更多原创开源书籍期待您的支持 ^o^
 
-# Shell 编程范例
 
 v 0.2
 

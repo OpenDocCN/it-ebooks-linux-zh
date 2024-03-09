@@ -1,47 +1,3 @@
-### 导航
-
-*   索引
-*   下一页 |
-*   上一页 |
-*   Linux Tools Quick Tutorial »
-
- # Linux 工具进阶
-
-程序篇
-
-*   1\. 程序构建
-*   2\. 程序调试
-*   3\. 性能优化 © 版权所有 2014, Colin http://blog.me115.com. 由 [Sphinx](http://sphinx-doc.org/) 1.3.5 创建。
-
-### 导航
-
-*   索引
-*   下一页 |
-*   上一页 |
-*   Linux Tools Quick Tutorial »
-*   Linux 工具进阶 »
-
- # 1\. 程序构建
-
-目录
-
-*   程序构建
-    *   配置
-    *   编译
-        *   makefile 编写的要点
-        *   makefile 中的全局自变量
-        *   更多选择 CMake
-        *   编译依赖的库
-        *   g++编译
-    *   安装
-    *   总结
-
-一般源代码提供的程序安装需要通过配置、编译、安装三个步骤；
-
-1.  配置做的工作主要是检查当前环境是否满足要安装软件的依赖关系，以及设置程序安装所需要的初始化信息，比如安装路径，需要安装哪些组件；配置完成，会生成 makefile 文件供第二步 make 使用；
-2.  编译是对源文件进行编译链接生成可执行程序；
-3.  安装做的工作就简单多了，就是将生成的可执行文件拷贝到配置时设置的初始路径下；
-
 ## 1.1\. 配置
 
 查询可用的配置选项:
@@ -171,34 +127,6 @@ $make install
 configure make install g++
 
 | [[1]](#id6) | 陈皓 跟我一起写 Makefile [`scc.qibebt.cas.cn/docs/linux/base/%B8%FA%CE%D2%D2%BB%C6%F0%D0%B4Makefile-%B3%C2%F0%A9.pdf`](http://scc.qibebt.cas.cn/docs/linux/base/%B8%FA%CE%D2%D2%BB%C6%F0%D0%B4Makefile-%B3%C2%F0%A9.pdf) | © 版权所有 2014, Colin http://blog.me115.com. 由 [Sphinx](http://sphinx-doc.org/) 1.3.5 创建。
-
-### 导航
-
-*   索引
-*   下一页 |
-*   上一页 |
-*   Linux Tools Quick Tutorial »
-*   Linux 工具进阶 »
-
- # 2\. 程序调试
-
-目录
-
-*   程序调试
-    *   进程调试
-        *   gdb 程序交互调试
-        *   pstack 跟踪栈空间
-        *   strace 分析系统调用
-    *   目标文件分析
-        *   nm
-        *   objdump
-        *   readelf
-        *   size 查看程序内存占用
-        *   file 文件类型查询
-        *   strings 查询数据中的文本信息
-        *   fuser 显示文件使用者
-        *   xxd 十六进制显示数据
-        *   od
 
 ## 2.1\. 进程调试
 
@@ -588,29 +516,6 @@ $od -c a.c
 ```
 
 注：类似命令还有 hexdump（十六进制输出） © 版权所有 2014, Colin http://blog.me115.com. 由 [Sphinx](http://sphinx-doc.org/) 1.3.5 创建。
-
-### 导航
-
-*   索引
-*   下一页 |
-*   上一页 |
-*   Linux Tools Quick Tutorial »
-*   Linux 工具进阶 »
-
- # 3\. 性能优化
-
-目录
-
-*   性能优化
-    *   分析系统瓶颈
-    *   分析内存瓶颈
-    *   分析 IO 瓶颈
-    *   分析进程调用
-    *   优化程序代码
-        *   gprof 使用步骤
-    *   其它工具
-
-性能优化的核心是找出系统的瓶颈点，问题找到了，优化的工作也就完成了大半； 这里介绍的性能优化主要从两个层面来介绍：系统层面和程序层面；
 
 ## 3.1\. 分析系统瓶颈
 

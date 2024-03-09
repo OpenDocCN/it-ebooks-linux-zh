@@ -1,6 +1,4 @@
-# 介紹
-
-# Linux Insides
+# Linux 内部原理
 
 一系列关于 Linux 内核和其内在机理的帖子。
 

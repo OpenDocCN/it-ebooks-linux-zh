@@ -1,44 +1,3 @@
-### 导航
-
-*   索引
-*   下一页 |
-*   上一页 |
-*   Linux Tools Quick Tutorial »
-
- # 工具参考篇
-
-*   1\. gdb 调试利器
-*   2\. ldd 查看程序依赖库
-*   3\. lsof 一切皆文件
-*   4\. ps 进程查看器
-*   5\. pstack 跟踪进程栈
-*   6\. strace 跟踪进程中的系统调用
-*   7\. ipcs 查询进程间通信状态
-*   8\. top linux 下的任务管理器
-*   9\. free 查询可用内存
-*   10\. vmstat 监视内存使用情况
-*   11\. iostat 监视 I/O 子系统
-*   12\. sar 找出系统瓶颈的利器
-*   13\. readelf elf 文件格式分析
-*   14\. objdump 二进制文件分析
-*   15\. nm 目标文件格式分析
-*   16\. size 查看程序内存映像大小
-*   17\. wget 文件下载
-*   18\. scp 跨机远程拷贝
-*   19\. crontab 定时任务 © 版权所有 2014, Colin http://blog.me115.com. 由 [Sphinx](http://sphinx-doc.org/) 1.3.5 创建。
-
-### 导航
-
-*   索引
-*   下一页 |
-*   上一页 |
-*   Linux Tools Quick Tutorial »
-*   工具参考篇 »
-
- # 1\. gdb 调试利器
-
-GDB 是一个由 GNU 开源组织发布的、UNIX/LINUX 操作系统下的、基于命令行的、功能强大的程序调试工具。 对于一名 Linux 下工作的 c++程序员，gdb 是必不可少的工具；
-
 ## 1.1\. 启动 gdb
 
 对 C/C++程序的调试，需要在编译前就加上-g 选项:
@@ -161,71 +120,6 @@ $gdb hello 11127
 ### cgdb
 
 cgdb 可以看作 gdb 的界面增强版,用来替代 gdb 的 gdb -tui。cgdb 主要功能是在调试时进行代码的同步显示，这无疑增加了调试的方便性，提高了调试效率。界面类似 vi，符合 unix/linux 下开发人员习惯;如果熟悉 gdb 和 vi，几乎可以立即使用 cgdb。 © 版权所有 2014, Colin http://blog.me115.com. 由 [Sphinx](http://sphinx-doc.org/) 1.3.5 创建。
-
-### 导航
-
-*   索引
-*   下一页 |
-*   上一页 |
-*   Linux Tools Quick Tutorial »
-*   工具参考篇 »
-
- # 2\. ldd 查看程序依赖库
-
-ldd
-
-作用：用来查看程式运行所需的共享库,常用来解决程式因缺少某个库文件而不能运行的一些问题。
-
-示例：查看 test 程序运行所依赖的库:
-
-```
-/opt/app/todeav1/test$ldd test
-libstdc++.so.6 => /usr/lib64/libstdc++.so.6 (0x00000039a7e00000)
-libm.so.6 => /lib64/libm.so.6 (0x0000003996400000)
-libgcc_s.so.1 => /lib64/libgcc_s.so.1 (0x00000039a5600000)
-libc.so.6 => /lib64/libc.so.6 (0x0000003995800000)
-/lib64/ld-linux-x86-64.so.2 (0x0000003995400000)
-
-```
-
-*   第一列：程序需要依赖什么库
-*   第二列: 系统提供的与程序需要的库所对应的库
-*   第三列：库加载的开始地址
-
-通过上面的信息，我们可以得到以下几个信息：
-
-1.  通过对比第一列和第二列，我们可以分析程序需要依赖的库和系统实际提供的，是否相匹配
-2.  通过观察第三列，我们可以知道在当前的库中的符号在对应的进程的地址空间中的开始位置
-
-如果依赖的某个库找不到，通过这个命令可以迅速定位问题所在；
-
-注解
-
-原理： ldd 不是个可执行程式，而只是个 shell 脚本； ldd 显示可执行模块的 dependency 的工作原理，其实质是通过 ld-linux.so（elf 动态库的装载器）来实现的。ld-linux.so 模块会先于 executable 模块程式工作，并获得控制权，因此当上述的那些环境变量被设置时，ld-linux.so 选择了显示可执行模块的 dependency。 © 版权所有 2014, Colin http://blog.me115.com. 由 [Sphinx](http://sphinx-doc.org/) 1.3.5 创建。
-
-### 导航
-
-*   索引
-*   下一页 |
-*   上一页 |
-*   Linux Tools Quick Tutorial »
-*   工具参考篇 »
-
- # 3\. lsof 一切皆文件
-
-lsof（list open files）是一个查看当前系统文件的工具。在 linux 环境下，任何事物都以文件的形式存在，通过文件不仅仅可以访问常规数据，还可以访问网络连接和硬件。如传输控制协议 (TCP) 和用户数据报协议 (UDP) 套接字等，系统在后台都为该应用程序分配了一个文件描述符，该文件描述符提供了大量关于这个应用程序本身的信息。
-
-lsof 打开的文件可以是：
-
-1.  普通文件
-2.  目录
-3.  网络文件系统的文件
-4.  字符或设备文件
-5.  (函数)共享库
-6.  管道，命名管道
-7.  符号链接
-8.  网络文件（例如：NFS file、网络 socket，unix 域名 socket）
-9.  还有其它类型的文件，等等
 
 ## 3.1\. 命令参数
 
@@ -442,40 +336,6 @@ lsof -i @nf5260i5-td:20,21,80 -r 3
 
 ``` © 版权所有 2014, Colin http://blog.me115.com. 由 [Sphinx](http://sphinx-doc.org/) 1.3.5 创建。
 
-### 导航
-
-*   索引
-*   下一页 |
-*   上一页 |
-*   Linux Tools Quick Tutorial »
-*   工具参考篇 »
-
- # 4\. ps 进程查看器
-
-Linux 中的 ps 命令是 Process Status 的缩写。ps 命令用来列出系统中当前运行的那些进程。ps 命令列出的是当前那些进程的快照，就是执行 ps 命令的那个时刻的那些进程，如果想要动态的显示进程信息，就可以使用 top 命令。
-
-要对进程进行监测和控制，首先必须要了解当前进程的情况，也就是需要查看当前进程，而 ps 命令就是最基本同时也是非常强大的进程查看命令。使用该命令可以确定有哪些进程正在运行和运行的状态、进程是否结束、进程有没有僵死、哪些进程占用了过多的资源等等。总之大部分信息都是可以通过执行该命令得到的。
-
-ps 为我们提供了进程的一次性的查看，它所提供的查看结果并不动态连续的；如果想对进程时间监控，应该用 top linux 下的任务管理器 工具。
-
-注：kill 命令用于杀死进程。
-
-linux 上进程有 5 种状态:
-
-1.  运行(正在运行或在运行队列中等待)
-2.  中断(休眠中, 受阻, 在等待某个条件的形成或接受到信号)
-3.  不可中断(收到信号不唤醒和不可运行, 进程必须等待直到有中断发生)
-4.  僵死(进程已终止, 但进程描述符存在, 直到父进程调用 wait4()系统调用后释放)
-5.  停止(进程收到 SIGSTOP, SIGSTP, SIGTIN, SIGTOU 信号后停止运行运行)
-
-ps 工具标识进程的 5 种状态码:
-
-*   D 不可中断 uninterruptible sleep (usually IO)
-*   R 运行 runnable (on run queue)
-*   S 中断 sleeping
-*   T 停止 traced or stopped
-*   Z 僵死 a defunct (”zombie”) process
-
 ## 4.1\. 命令参数
 
 *   a 显示所有进程
@@ -620,28 +480,6 @@ root        56  0.0  0.0      0     0 ?        S<   Nov02   0:00 [kacpid]
 
 ``` © 版权所有 2014, Colin http://blog.me115.com. 由 [Sphinx](http://sphinx-doc.org/) 1.3.5 创建。
 
-### 导航
-
-*   索引
-*   下一页 |
-*   上一页 |
-*   Linux Tools Quick Tutorial »
-*   工具参考篇 »
-
- # 5\. pstack 跟踪进程栈
-
-此命令可显示每个进程的栈跟踪。pstack 命令必须由相应进程的属主或 root 运行。可以使用 pstack 来确定进程挂起的位置。此命令允许使用的唯一选项是要检查的进程的 PID。请参见 proc(1) 手册页。
-
-这个命令在排查进程问题时非常有用，比如我们发现一个服务一直处于 work 状态（如假死状态，好似死循环），使用这个命令就能轻松定位问题所在；可以在一段时间内，多执行几次 pstack，若发现代码栈总是停在同一个位置，那个位置就需要重点关注，很可能就是出问题的地方；
-
-示例：查看 bash 程序进程栈:
-
-```
-/opt/app/tdev1$ps -fe| grep bash
-tdev1   7013  7012  0 19:42 pts/1    00:00:00 -bash
-tdev1  11402 11401  0 20:31 pts/2    00:00:00 -bash
-tdev1  11474 11402  0 20:32 pts/2    00:00:00 grep bash
-/opt/app/tdev1$pstack 7013
 #0  0x00000039958c5620 in __read_nocancel () from /lib64/libc.so.6
 #1  0x000000000047dafe in rl_getc ()
 #2  0x000000000047def6 in rl_read_key ()
@@ -657,18 +495,6 @@ tdev1  11474 11402  0 20:32 pts/2    00:00:00 grep bash
 #12 0x000000000041b2aa in main ()
 
 ``` © 版权所有 2014, Colin http://blog.me115.com. 由 [Sphinx](http://sphinx-doc.org/) 1.3.5 创建。
-
-### 导航
-
-*   索引
-*   下一页 |
-*   上一页 |
-*   Linux Tools Quick Tutorial »
-*   工具参考篇 »
-
- # 6\. strace 跟踪进程中的系统调用
-
-strace 常用来跟踪进程执行时的系统调用和所接收的信号。 在 Linux 世界，进程不能直接访问硬件设备，当进程需要访问硬件设备(比如读取磁盘文件，接收网络数据等等)时，必须由用户态模式切换至内核态模式，通过系统调用访问硬件设备。strace 可以跟踪到一个进程产生的系统调用,包括参数，返回值，执行消耗的时间。
 
 ## 6.1\. 输出参数含义
 
@@ -766,18 +592,6 @@ strace -o output.txt -T -tt -e trace=all -p 28979
 ```
 
 跟踪 28979 进程的所有系统调用（-e trace=all），并统计系统调用的花费时间，以及开始时间（并以可视化的时分秒格式显示），最后将记录结果存在 output.txt 文件里面。 © 版权所有 2014, Colin http://blog.me115.com. 由 [Sphinx](http://sphinx-doc.org/) 1.3.5 创建。
-
-### 导航
-
-*   索引
-*   下一页 |
-*   上一页 |
-*   Linux Tools Quick Tutorial »
-*   工具参考篇 »
-
- # 7\. ipcs 查询进程间通信状态
-
-ipcs 是 Linux 下显示进程间通信设施状态的工具。可以显示消息队列、共享内存和信号量的信息。对于程序员非常有用，普通的系统管理员一般用不到此指令。
 
 ## 7.1\. IPC 资源查询
 
@@ -969,93 +783,6 @@ ipcs -s | awk '{ print "ipcrm -s "$2}' | sh > /dev/null 2>&1;
 
     ``` © 版权所有 2014, Colin http://blog.me115.com. 由 [Sphinx](http://sphinx-doc.org/) 1.3.5 创建。
 
-### 导航
-
-*   索引
-*   下一页 |
-*   上一页 |
-*   Linux Tools Quick Tutorial »
-*   工具参考篇 »
-
- # 8\. top linux 下的任务管理器
-
-top 命令是 Linux 下常用的性能分析工具，能够实时显示系统中各个进程的资源占用状况，类似于 Windows 的任务管理器。top 是一个动态显示过程,即可以通过用户按键来不断刷新当前状态.如果在前台执行该命令,它将独占前台,直到用户终止该程序为止.比较准确的说,top 命令提供了实时的对系统处理器的状态监视.它将显示系统中 CPU 最“敏感”的任务列表.该命令可以按 CPU 使用.内存使用和执行时间对任务进行排序；而且该命令的很多特性都可以通过交互式命令或者在个人定制文件中进行设定。
-
-```
-$top
-    top - 09:14:56 up 264 days, 20:56,  1 user,  load average: 0.02, 0.04, 0.00
-    Tasks:  87 total,   1 running,  86 sleeping,   0 stopped,   0 zombie
-    Cpu(s):  0.0%us,  0.2%sy,  0.0%ni, 99.7%id,  0.0%wa,  0.0%hi,  0.0%si,  0.2%st
-    Mem:    377672k total,   322332k used,    55340k free,    32592k buffers
-    Swap:   397308k total,    67192k used,   330116k free,    71900k cached
-    PID USER      PR  NI  VIRT  RES  SHR S %CPU %MEM    TIME+  COMMAND
-    1 root      20   0  2856  656  388 S  0.0  0.2   0:49.40 init
-    2 root      20   0     0    0    0 S  0.0  0.0   0:00.00 kthreadd
-    3 root      20   0     0    0    0 S  0.0  0.0   7:15.20 ksoftirqd/0
-    4 root      RT   0     0    0    0 S  0.0  0.0   0:00.00 migration/0
-
-```
-
-*   第一行
-
-    *   09:14:56 ： 系统当前时间
-    *   264 days, 20:56 ： 系统开机到现在经过了多少时间
-    *   1 users ： 当前 2 用户在线
-    *   load average: 0.02, 0.04, 0.00： 系统 1 分钟、5 分钟、15 分钟的 CPU 负载信息
-
-*   第二行
-
-    *   Tasks：任务;
-    *   87 total：很好理解，就是当前有 87 个任务，也就是 87 个进程。
-    *   1 running：1 个进程正在运行
-    *   86 sleeping：86 个进程睡眠
-    *   0 stopped：停止的进程数
-    *   0 zombie：僵死的进程数
-
-*   第三行
-
-    *   Cpu(s)：表示这一行显示 CPU 总体信息
-    *   0.0%us：用户态进程占用 CPU 时间百分比，不包含 renice 值为负的任务占用的 CPU 的时间。
-    *   0.7%sy：内核占用 CPU 时间百分比
-    *   0.0%ni：改变过优先级的进程占用 CPU 的百分比
-    *   99.3%id：空闲 CPU 时间百分比
-    *   0.0%wa：等待 I/O 的 CPU 时间百分比
-    *   0.0%hi：CPU 硬中断时间百分比
-    *   0.0%si：CPU 软中断时间百分比
-    *   注：这里显示数据是所有 cpu 的平均值，如果想看每一个 cpu 的处理情况，按 1 即可；折叠，再次按 1；
-
-*   第四行
-
-    *   Men：内存的意思
-    *   8175320kk total：物理内存总量
-    *   8058868k used：使用的物理内存量
-    *   116452k free：空闲的物理内存量
-    *   283084k buffers：用作内核缓存的物理内存量
-
-*   第五行
-
-    *   Swap：交换空间
-    *   6881272k total：交换区总量
-    *   4010444k used：使用的交换区量
-    *   2870828k free：空闲的交换区量
-    *   4336992k cached：缓冲交换区总量
-
-*   进程信息
-
-    *   再下面就是进程信息：
-    *   PID：进程的 ID
-    *   USER：进程所有者
-    *   PR：进程的优先级别，越小越优先被执行
-    *   NInice：值
-    *   VIRT：进程占用的虚拟内存
-    *   RES：进程占用的物理内存
-    *   SHR：进程使用的共享内存
-    *   S：进程的状态。S 表示休眠，R 表示正在运行，Z 表示僵死状态，N 表示该进程优先值为负数
-    *   %CPU：进程占用 CPU 的使用率
-    *   %MEM：进程使用的物理内存和总内存的百分比
-    *   TIME+：该进程启动后占用的总的 CPU 时间，即占用 CPU 使用时间的累加值。
-    *   COMMAND：进程启动命令名称
-
 ## 8.1\. top 命令交互操作指令
 
 下面列出一些常用的 top 命令操作指令
@@ -1180,119 +907,6 @@ htop 是一个 Linux 下的交互式的进程浏览器，可以用来替换 Linu
 *   杀进程时不需要输入进程号。
 *   htop 支持鼠标操作。 © 版权所有 2014, Colin http://blog.me115.com. 由 [Sphinx](http://sphinx-doc.org/) 1.3.5 创建。
 
-### 导航
-
-*   索引
-*   下一页 |
-*   上一页 |
-*   Linux Tools Quick Tutorial »
-*   工具参考篇 »
-
- # 9\. free 查询可用内存
-
-free 工具用来查看系统可用内存:
-
-```
-/opt/app/tdev1$free
-             total       used       free     shared    buffers     cached
-Mem:       8175320    6159248    2016072          0     310208    5243680
--/+ buffers/cache:     605360    7569960
-Swap:      6881272      16196    6865076
-
-```
-
-解释一下 Linux 上 free 命令的输出。
-
-下面是 free 的运行结果，一共有 4 行。为了方便说明，我加上了列号。这样可以把 free 的输出看成一个二维数组 FO(Free Output)。例如:
-
-```
-FO[2][1] = 24677460
-FO[3][2] = 10321516
-
-                   1          2          3          4          5          6
-1              total       used       free     shared    buffers     cached
-2 Mem:      24677460   23276064    1401396          0     870540   12084008
-3 -/+ buffers/cache:   10321516   14355944
-4 Swap:     25151484     224188   24927296
-
-```
-
-free 的输出一共有四行，第四行为交换区的信息，分别是交换的总量（total），使用量（used）和有多少空闲的交换区（free），这个比较清楚，不说太多。
-
-free 输出地第二行和第三行是比较让人迷惑的。这两行都是说明内存使用情况的。第一列是总量（total），第二列是使用量（used），第三列是可用量（free）。
-
-　　第一行的输出时从操作系统（OS）来看的。也就是说，从 OS 的角度来看，计算机上一共有:
-
-24677460KB（缺省时 free 的单位为 KB）物理内存，即 FO[2][1]； 在这些物理内存中有 23276064KB（即 FO[2][2]）被使用了； 还用 1401396KB（即 FO[2][3]）是可用的；
-
-这里得到第一个等式：
-
-FO[2][1] = FO[2][2] + FO[2][3]
-
-FO[2][4]表示被几个进程共享的内存的，现在已经 deprecated，其值总是 0（当然在一些系统上也可能不是 0，主要取决于 free 命令是怎么实现的）。
-
-FO[2][5]表示被 OS buffer 住的内存。FO[2][6]表示被 OS cache 的内存。在有些时候 buffer 和 cache 这两个词经常混用。不过在一些比较低层的软件里是要区分这两个词的，看老外的洋文:
-
-```
-A buffer is something that has yet to be "written" to disk.
-A cache is something that has been "read" from the disk and stored for later use.
-
-```
-
-也就是说 buffer 是用于存放要输出到 disk（块设备）的数据的，而 cache 是存放从 disk 上读出的数据。这二者是为了提高 IO 性能的，并由 OS 管理。
-
-Linux 和其他成熟的操作系统（例如 windows），为了提高 IO read 的性能，总是要多 cache 一些数据，这也就是为什么 FO[2][6]（cached memory）比较大，而 FO[2][3]比较小的原因。我们可以做一个简单的测试:
-
-释放掉被系统 cache 占用的数据:
-
-```
-echo 3>/proc/sys/vm/drop_caches
-
-```
-
-1.  读一个大文件，并记录时间；
-2.  关闭该文件；
-3.  重读这个大文件，并记录时间；
-
-第二次读应该比第一次快很多。原来我做过一个 BerkeleyDB 的读操作，大概要读 5G 的文件，几千万条记录。在我的环境上，第二次读比第一次大概可以快 9 倍左右。
-
-free 输出的第二行是从一个应用程序的角度看系统内存的使用情况。
-
-*   对于 FO[3][2]，即-buffers/cache，表示一个应用程序认为系统被用掉多少内存；
-*   对于 FO[3][3]，即+buffers/cache，表示一个应用程序认为系统还有多少内存；
-
-因为被系统 cache 和 buffer 占用的内存可以被快速回收，所以通常 FO[3][3]比 FO[2][3]会大很多。
-
-这里还用两个等式:
-
-```
-FO[3][2] = FO[2][2] - FO[2][5] - FO[2][6]
-FO[3][3] = FO[2][3] + FO[2][5] + FO[2][6]
-
-```
-
-这二者都不难理解。
-
-free 命令由 procps.*.rpm 提供（在 Redhat 系列的 OS 上）。free 命令的所有输出值都是从/proc/meminfo 中读出的。
-
-在系统上可能有 meminfo(2)这个函数，它就是为了解析/proc/meminfo 的。procps 这个包自己实现了 meminfo()这个函数。可以下载一个 procps 的 tar 包看看具体实现，现在最新版式 3.2.8。
-
-文章出处:
-
-[`www.cnblogs.com/coldplayerest/archive/2010/02/20/1669949.html`](http://www.cnblogs.com/coldplayerest/archive/2010/02/20/1669949.html) © 版权所有 2014, Colin http://blog.me115.com. 由 [Sphinx](http://sphinx-doc.org/) 1.3.5 创建。
-
-### 导航
-
-*   索引
-*   下一页 |
-*   上一页 |
-*   Linux Tools Quick Tutorial »
-*   工具参考篇 »
-
- # 10\. vmstat 监视内存使用情况
-
-vmstat 是 Virtual Meomory Statistics（虚拟内存统计）的缩写，可实时动态监视操作系统的虚拟内存、进程、CPU 活动。
-
 ## 10.1\. vmstat 的语法
 
 　　vmstat [-V] [-n] [delay [count]]
@@ -1347,18 +961,6 @@ CPU（以百分比表示）
 *   sy: 系统进程执行时间(system time)
 *   id: 空闲时间(包括 IO 等待时间)
 *   wa: 等待 IO 时间 © 版权所有 2014, Colin http://blog.me115.com. 由 [Sphinx](http://sphinx-doc.org/) 1.3.5 创建。
-
-### 导航
-
-*   索引
-*   下一页 |
-*   上一页 |
-*   Linux Tools Quick Tutorial »
-*   工具参考篇 »
-
- # 11\. iostat 监视 I/O 子系统
-
-iostat 是 I/O statistics（输入/输出统计）的缩写，用来动态监视系统的磁盘操作活动。
 
 ## 11.1\. 命令格式
 
@@ -1542,23 +1144,6 @@ svctm 一般要小于 await (因为同时等待的请求的等待时间被重复
 
 每秒发出的 I/0 请求很多,但是平均队列就 4,表示这些请求比较均匀,大部分处理还是比较及时。 © 版权所有 2014, Colin http://blog.me115.com. 由 [Sphinx](http://sphinx-doc.org/) 1.3.5 创建。
 
-### 导航
-
-*   索引
-*   下一页 |
-*   上一页 |
-*   Linux Tools Quick Tutorial »
-*   工具参考篇 »
-
- # 12\. sar 找出系统瓶颈的利器
-
-sar 是 System Activity Reporter（系统活动情况报告）的缩写。sar 工具将对系统当前的状态进行取样，然后通过计算数据和比例来表达系统的当前运行状态。它的特点是可以连续对系统取样，获得大量的取样数据；取样数据和分析的结果都可以存入文件，所需的负载很小。sar 是目前 Linux 上最为全面的系统性能分析工具之一，可以从 14 个大方面对系统的活动进行报告，包括文件的读写情况、系统调用的使用情况、串口、CPU 效率、内存使用状况、进程活动及 IPC 有关的活动等，使用也是较为复杂。
-
-sar 是查看操作系统报告指标的各种工具中，最为普遍和方便的；它有两种用法；
-
-1.  追溯过去的统计数据（默认）
-2.  周期性的查看当前数据
-
 ## 12.1\. 追溯过去的统计数据
 
 默认情况下，sar 从最近的 0 点 0 分开始显示数据；如果想继续查看一天前的报告；可以查看保存在/var/log/sysstat/下的 sa 日志； 使用 sar 工具查看:
@@ -1658,43 +1243,6 @@ sar -W：查看页面交换发生状况
 *   -v 报告进程、i 节点、文件和锁表状态
 *   -w 报告系统交换活动状况
 *   -y 报告 TTY 设备活动状况 © 版权所有 2014, Colin http://blog.me115.com. 由 [Sphinx](http://sphinx-doc.org/) 1.3.5 创建。
-
-### 导航
-
-*   索引
-*   下一页 |
-*   上一页 |
-*   Linux Tools Quick Tutorial »
-*   工具参考篇 »
-
- # 13\. readelf elf 文件格式分析
-
-这个工具和 objdump 命令提供的功能类似，但是它显示的信息更为具体，并且它不依赖 BFD 库(BFD 库是一个 GNU 项目，它的目标就是希望通过一种统一的接口来处理不同的目标文件）；
-
-**ELF 文件类型**
-
-ELF(Executable and Linking Format)是一种对象文件的格式，用于定义不同类型的对象文件(Object files)中都放了什么东西、以及都以什么样的格式去放这些东西。它自最早在 System V 系统上出现后，被 xNIX 世界所广泛接受，作为缺省的二进制文件格式来使用。可以说，ELF 是构成众多 xNIX 系统的基础之一。
-
-ELF 文件有三种类型：
-
-1.  可重定位的对象文件(Relocatable file)
-
-    由汇编器汇编生成的 .o 文件
-
-2.  可执行的对象文件(Executable file)
-
-    可执行应用程序
-
-3.  可被共享的对象文件(Shared object file)
-
-    动态库文件，也即 .so 文件
-
-*   .text section 里装载了可执行代码；
-*   .data section 里面装载了被初始化的数据；
-*   .bss section 里面装载了未被初始化的数据；
-*   以 .rec 打头的 sections 里面装载了重定位条目；
-*   .symtab 或者 .dynsym section 里面装载了符号信息；
-*   .strtab 或者 .dynstr section 里面装载了字符串信息；
 
 ## 13.1\. 参数说明
 
@@ -2025,18 +1573,6 @@ Notes at offset 0x00000188 with length 0x00000024:
 
 关于 ELF 文件格式的参考：[`www.cnblogs.com/xmphoenix/archive/2011/10/23/2221879.html`](http://www.cnblogs.com/xmphoenix/archive/2011/10/23/2221879.html) © 版权所有 2014, Colin http://blog.me115.com. 由 [Sphinx](http://sphinx-doc.org/) 1.3.5 创建。
 
-### 导航
-
-*   索引
-*   下一页 |
-*   上一页 |
-*   Linux Tools Quick Tutorial »
-*   工具参考篇 »
-
- # 14\. objdump 二进制文件分析
-
-objdump 工具用来显示二进制文件的信息，就是以一种可阅读的格式让你更多地了解二进制文件可能带有的附加信息。
-
 ## 14.1\. 常用参数说明
 
 *   -f 显示文件头信息
@@ -2073,62 +1609,6 @@ $objdump  -t main.o
 ```
 
 希望显示可用的简洁帮助信息，直接输入 objdump 即可；（objdump -H) © 版权所有 2014, Colin http://blog.me115.com. 由 [Sphinx](http://sphinx-doc.org/) 1.3.5 创建。
-
-### 导航
-
-*   索引
-*   下一页 |
-*   上一页 |
-*   Linux Tools Quick Tutorial »
-*   工具参考篇 »
-
- # 15\. nm 目标文件格式分析
-
-nm 命令显示关于指定 File 中符号的信息，文件可以是对象文件、可执行文件或对象文件库。如果文件没有包含符号信息，nm 命令报告该情况，但不把它解释为出错条件。 nm 命令缺省情况下报告十进制符号表示法下的数字值。
-
-```
-$nm myProgrammer
-08049f28 d _DYNAMIC
-08049ff4 d _GLOBAL_OFFSET_TABLE_
-080484dc R _IO_stdin_used
-         w _Jv_RegisterClasses
-08049f18 d __CTOR_END__
-08049f14 d __CTOR_LIST__
-08049f20 D __DTOR_END__
-08049f1c d __DTOR_LIST__
-080485e0 r __FRAME_END__
-08049f24 d __JCR_END__
-08049f24 d __JCR_LIST__
-0804a014 A __bss_start
-0804a00c D __data_start
-08048490 t __do_global_ctors_aux
-08048360 t __do_global_dtors_aux
-0804a010 D __dso_handle
-         w __gmon_start__
-08048482 T __i686.get_pc_thunk.bx
-08049f14 d __init_array_end
-08049f14 d __init_array_start
-08048480 T __libc_csu_fini
-08048410 T __libc_csu_init
-         U __libc_start_main@@GLIBC_2.0
-0804a014 A _edata
-0804a01c A _end
-080484bc T _fini
-080484d8 R _fp_hw
-080482b4 T _init
-08048330 T _start
-0804a014 b completed.6086
-0804a00c W data_start
-0804a018 b dtor_idx.6088
-080483c0 t frame_dummy
-080483e4 T main
-         U printf@@GLIBC_2.0
-
-```
-
-这些包含可执行代码的段称为正文段。同样地，数据段包含了不可执行的信息或数据。另一种类型的段，称为 BSS 段，它包含以符号数据开头的块。对于 nm 命令列出的每个符号，它们的值使用十六进制来表示（缺省行为），并且在该符号前面加上了一个表示符号类型的编码字符。
-
-可以将目标文件中所包含的不同的部分划分为段。段可以包含可执行代码、符号名称、初始数据值和许多其他类型的数据。有关这些类型的数据的详细信息，可以阅读 UNIX 中 nm 的 man 页面，其中按照该命令输出中的字符编码分别对每种类型进行了描述。
 
 ## 15.1\. 选项说明
 
@@ -2232,55 +1712,6 @@ objdump、readld 命令可以完成同样的任务。等效命令为： $objdump
     $nm -X64 /usr/lib/libc.a
 
     ``` © 版权所有 2014, Colin http://blog.me115.com. 由 [Sphinx](http://sphinx-doc.org/) 1.3.5 创建。
-
-### 导航
-
-*   索引
-*   下一页 |
-*   上一页 |
-*   Linux Tools Quick Tutorial »
-*   工具参考篇 »
-
- # 16\. size 查看程序内存映像大小
-
-作用：查看程序被映射到内存中的映像所占用的大小信息。
-
-程序映射到内存中，从低地址到高地址依次为下列段:
-
-*   代码段： 只读，可共享; 代码段（code segment/text segment ）通常是指用来存放程序执行代码的一块内存区域。这部分区域的大小在程序运行前就已经确定，并且内存区域通常属于只读, 某些架构也允许代码段为可写，即允许修改程序。在代码段中，也有可能包含一些只读的常数变量，例如字符串常量等。
-*   数据段： 储存已被初始化了的静态数据。数据段（data segment ）通常是指用来存放程序中已初始化的全局变量的一块内存区域。数据段属于静态内存分配。
-*   BSS 段：未初始化的数据段. BSS 段（bss segment ）通常是指用来存放程序中未初始化的全局变量的一块内存区域。BSS 是英文 Block Started by Symbol 的简称。BSS 段属于静态内存分配。
-*   堆（heap ）： 堆是用于存放进程运行中被动态分配的内存段，它的大小并不固定，可动态扩张或缩减。当进程调用 malloc 等函数分配内存时，新分配的内存就被动态添加到堆上（堆被扩张）；当利用 free 等函数释放内存时，被释放的内存从堆中被剔除（堆被缩减）
-*   栈(stack) ：栈又称堆栈，是用户存放程序临时创建的局部变量，也就是说我们函数括弧“{} ”中定义的变量（但不包括 static 声明的变量，static 意味着在数据段中存放变量）。除此以外，在函数被调用时，其参数也会被压入发起调用的进程栈中，并且待到调用结束后，函数的返回值也会被存放回栈中。由于栈的先进先出特点，所以栈特别方便用来保存/ 恢复调用现场。从这个意义上讲，我们可以把堆栈看成一个寄存、交换临时数据的内存区。
-
-另外, 在高地址还储存了命令行参数及环境变量.
-
-因为内存程序映像中的各段可能位于不同的地址空间中, 它们不一定位于连续的内存块中. 操作系统将程序映像映射到地址空间时, 通常将内存程序映像划分为大小相同的块(也就是 page, 页). 只有该页被引用时, 它才被加载到内存中. 不过对于程序员来说, 可以视内存程序映像在逻辑上是连续的.
-
-```
-/opt/app/todeav1/colin/tests#size main
-text    data     bss     dec     hex filename
-1259     540      16    1815     717 main
-
-```
-
-关于程序内存映像，这篇文章讲的很好：[`blog.chinaunix.net/uid-9012903-id-2011435.html`](http://blog.chinaunix.net/uid-9012903-id-2011435.html) © 版权所有 2014, Colin http://blog.me115.com. 由 [Sphinx](http://sphinx-doc.org/) 1.3.5 创建。
-
-### 导航
-
-*   索引
-*   下一页 |
-*   上一页 |
-*   Linux Tools Quick Tutorial »
-*   工具参考篇 »
-
- # 17\. wget 文件下载
-
-Linux 系统中的 wget 是一个下载文件的工具，它用在命令行下。对于 Linux 用户是必不可少的工具，我们经常要下载一些软件或从远程服务器恢复备份到本地服务器。wget 支持 HTTP，HTTPS 和 FTP 协议，可以使用 HTTP 代理。
-
-wget 可以跟踪 HTML 页面上的链接依次下载来创建远程服务器的本地版本，完全重建原始站点的目录结构。这又常被称作”递归下载”。在递归下载的时候，wget 遵循 Robot Exclusion 标准(/robots.txt). wget 可以在下载的同时，将链接转换成指向本地文件，以方便离线浏览。
-
-wget 非常稳定，它在带宽很窄的情况下和不稳定网络中有很强的适应性.如果是由于网络的原因下载失败，wget 会不断的尝试，直到整个文件下载完毕。如果是服务器打断下载过程，它会再次联到服务器上从停止的地方继续下载。这对从那些限定了链接时间的服务器上下载大文件非常有用。
 
 ## 17.1\. 命令格式
 
@@ -2538,22 +1969,6 @@ make install
 
 ``` © 版权所有 2014, Colin http://blog.me115.com. 由 [Sphinx](http://sphinx-doc.org/) 1.3.5 创建。
 
-### 导航
-
-*   索引
-*   下一页 |
-*   上一页 |
-*   Linux Tools Quick Tutorial »
-*   工具参考篇 »
-
- # 18\. scp 跨机远程拷贝
-
-scp 是 secure copy 的简写，用于在 Linux 下进行远程拷贝文件的命令，和它类似的命令有 cp，不过 cp 只是在本机进行拷贝不能跨服务器，而且 scp 传输是加密的。当你服务器硬盘变为只读 read only system 时，用 scp 可以帮你把文件移出来。
-
-注解
-
-类似的工具有 rsync；scp 消耗资源少，不会提高多少系统负荷，在这一点上，rsync 就远远不及它了。rsync 比 scp 会快一点，但当小文件多的情况下，rsync 会导致硬盘 I/O 非常高，而 scp 基本不影响系统正常使用。
-
 ## 18.1\. 命令格式：
 
 scp [参数] [原路径] [目标路径]
@@ -2645,17 +2060,6 @@ $scp -r /opt/soft/test root@10.6.159.147:/opt/soft/scptest
 ```
 
 说明： 上传本地目录 /opt/soft/test 到远程机器 10.6.159.147 上/opt/soft/scptest 的目录中 © 版权所有 2014, Colin http://blog.me115.com. 由 [Sphinx](http://sphinx-doc.org/) 1.3.5 创建。
-
-### 导航
-
-*   索引
-*   上一页 |
-*   Linux Tools Quick Tutorial »
-*   工具参考篇 »
-
- # 19\. crontab 定时任务
-
-通过 crontab 命令，我们可以在固定的间隔时间执行指定的系统指令或 shell script 脚本。时间间隔的单位可以是分钟、小时、日、月、周及以上的任意组合。这个命令非常适合周期性的日志分析或数据备份等工作。
 
 ## 19.1\. 命令格式
 
@@ -2917,11 +2321,6 @@ $sudo /etc/init.d/cron stop
 $sudo /etc/init.d/cron restart
 
 ``` © 版权所有 2014, Colin http://blog.me115.com. 由 [Sphinx](http://sphinx-doc.org/) 1.3.5 创建。
-
-### 导航
-
-*   索引
-*   Linux Tools Quick Tutorial »
 
 # 索引
 
